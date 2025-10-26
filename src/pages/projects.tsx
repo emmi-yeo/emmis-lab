@@ -207,7 +207,12 @@ export default function Projects() {
   const { theme } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState(serviceCategories[0]);
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const currentProjects = projects[selectedCategory as keyof typeof projects];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Handle category from URL parameter
   useEffect(() => {
@@ -263,12 +268,12 @@ export default function Projects() {
                     : 'transparent',
                   color: selectedCategory === category
                     ? '#000000'
-                    : (theme === 'dark' ? '#FFFFFF' : '#000000'),
+                    : (mounted && theme === 'dark' ? '#FFFFFF' : '#000000'),
                   borderWidth: '1px',
                   borderStyle: 'solid',
                   borderColor: selectedCategory === category
                     ? '#FBD144'
-                    : (theme === 'dark' ? '#FFFFFF' : '#000000')
+                    : (mounted && theme === 'dark' ? '#FFFFFF' : '#000000')
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = '#FBD144';
@@ -282,8 +287,8 @@ export default function Projects() {
                     e.currentTarget.style.borderColor = '#FBD144';
                   } else {
                     e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#000000';
-                    e.currentTarget.style.borderColor = theme === 'dark' ? '#FFFFFF' : '#000000';
+                    e.currentTarget.style.color = (mounted && theme === 'dark') ? '#FFFFFF' : '#000000';
+                    e.currentTarget.style.borderColor = (mounted && theme === 'dark') ? '#FFFFFF' : '#000000';
                   }
                 }}
               >
