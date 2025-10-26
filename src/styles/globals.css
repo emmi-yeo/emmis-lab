@@ -1,26 +1,41 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Smooth theme transition */
+body { transition: background-color 0.3s, color 0.3s; }
+
+/* Smooth anchor scroll */
+html {
+  scroll-behavior: smooth;
+  /* fallback used until JS measures the header */
+  scroll-padding-top: var(--nav-offset, 132px);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ✅ Critical: apply the dynamic offset to every anchor target */
+section[id], [data-anchor="true"] {
+  scroll-margin-top: var(--nav-offset, 132px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Custom cursor styles */
+.custom-cursor-circle {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: transform 0.1s;
 }
 
+/* Hide default cursor when custom cursor is active */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
+}
+
+/* Show default cursor on interactive elements */
+a, button, input, textarea, select, [role="button"] {
+  cursor: pointer;
 }
