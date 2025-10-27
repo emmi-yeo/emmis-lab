@@ -41,11 +41,10 @@ const milestones: Milestone[] = [
   },
   {
     year: "2022",
-    title: "CFA (Can’t Feel Anything)",
+    title: "CFA",
     subtitle: "Took CFA Level 1. Got humbled. Retried life instead.",
     detail: `
-➤ Took CFA Level 1. Got humbled. Retried life instead.
-➤ (Still recovering. Emotionally. 📉)
+➤ Still recovering. Emotionally. 📉
     `,
   },
   {
@@ -59,6 +58,7 @@ const milestones: Milestone[] = [
 ➤ Fluent in CAPM, RIM, ROIM, DCF, and other acronyms that scare normal people.
 
 **Also: The CEO's Personal Assistant (and somehow still had time to breathe (barely)).**
+
 ➤ Wore 5 hats at once and somehow didn’t drop any.
 ➤ Acted as the human firewall between the CEO and absolute chaos.
 ➤ Was the go-to person for “can you help with this real quick?” (Yes. I did.)
@@ -98,11 +98,9 @@ const milestones: Milestone[] = [
   },
   {
     year: "Upcoming",
-    title: "TBD",
+    title: "That AI Girl Who Gets Stuff Done",
     subtitle: "Always learning. Always building.",
     detail: `
-**Unofficial Title: “That AI Girl Who Gets Stuff Done”.**
-
 ➤ If it involves data, automation, or generative AI — I’m in.
 ➤ Vibe coding my way through life — I describe it, the AI builds it, I debug it, we cry together.
 ➤ Always learning. Always iterating. Always caffeinated. ☕💻
