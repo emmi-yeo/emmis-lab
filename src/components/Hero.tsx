@@ -46,7 +46,7 @@ export default function Hero() {
                 Hi, I'm Emmi Yeo
               </h1>
               <p className="text-xl font-semibold text-lighttextsecondary dark:text-darktextsecondary italic">
-                AI Enthusiast
+                Data Science & AI Enthusiast
               </p>
 
               {/* Location */}
