@@ -3,14 +3,14 @@ import { useEffect, useRef, useState } from "react";
 
 const sections = [
   "home",
-  "about",
-  "services",
+  "about me",
+  "things I do",
 //  "stats",
-  "projects",
-  "tech",
-  "testimonials",
-  "process",
-  "contact",
+  "stuffs I've made",
+  "my toolbox",
+  "what people say",
+  "workflow",
+  "inbox me",
 ];
 
 export default function Navbar() {
@@ -153,7 +153,7 @@ export default function Navbar() {
           }}>
           {/* Left - Logo */}
           <div 
-            className="font-bold w-[200px]"
+            className="font-bold flex-shrink-0"
             style={{ 
               color: theme === 'dark' ? '#FFFFFF' : '#000000'
             }}
@@ -161,14 +161,14 @@ export default function Navbar() {
             Emmi Yeo
           </div>
 
-          {/* Center - Navigation */}
-          <div className="flex items-center justify-center gap-6">
+          {/* Center - Navigation (Desktop) */}
+          <div className="hidden lg:flex items-center justify-center gap-2 xl:gap-4">
             {sections.map((id) => (
               <a
                 key={id}
                 href={`#${id}`}
                 onClick={(e) => onNavClick(e, `#${id}`)}
-                className="text-sm font-medium transition-all hover:text-[#FBD144] active:scale-95"
+                className="text-xs xl:text-sm font-medium transition-all hover:text-[#FBD144] active:scale-95 whitespace-nowrap"
                 style={{ 
                   color: activeSection === id ? '#FBD144' : theme === 'dark' ? '#FFFFFF' : '#000000',
                   fontWeight: activeSection === id ? '600' : '500'
@@ -180,18 +180,20 @@ export default function Navbar() {
                   e.currentTarget.style.color = activeSection === id ? '#FBD144' : theme === 'dark' ? '#FFFFFF' : '#000000';
                 }}
               >
-                {id === "tech" ? "Stack" : id.charAt(0).toUpperCase() + id.slice(1)}
+                {id === "tech" 
+                  ? "Stack" 
+                  : id.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
               </a>
             ))}
           </div>
 
           {/* Right - Dark Mode Toggle */}
-          <div className="w-[200px] flex justify-end">
+          <div className="flex justify-end flex-shrink-0">
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle Dark Mode"
-                className="text-sm px-4 py-2 rounded-full transition-all duration-200 active:scale-95"
+                className="text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2 rounded-full transition-all duration-200 active:scale-95"
                 style={{
                   backgroundColor: theme === 'dark' ? '#FFFFFF' : '#000000',
                   color: theme === 'dark' ? '#000000' : '#FFFFFF',

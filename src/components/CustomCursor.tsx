@@ -11,7 +11,7 @@ export default function CustomCursor() {
     cursorContainer.style.width = '100%';
     cursorContainer.style.height = '100%';
     cursorContainer.style.pointerEvents = 'none';
-    cursorContainer.style.zIndex = '99999999';
+    cursorContainer.style.zIndex = '999999998'; // Above overlay (99999999), below modal content (999999999)
 
     // Create 20 circles
     const circles = Array.from({ length: 20 }, () => {

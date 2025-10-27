@@ -26,7 +26,7 @@ function Card({ title, description, i }: { title: string; description: string; i
 export default function Services() {
   return (
     <section
-      id="services"
+      id="things I do"
       className="relative z-[1] bg-lightsecondary dark:bg-darksecondary px-3 sm:px-4 md:px-6 lg:px-8"
     >
       <div className="border border-lightborder dark:border-darkborder -mt-px">

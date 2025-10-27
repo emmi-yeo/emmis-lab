@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useTheme } from "next-themes";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -112,33 +113,61 @@ const milestones: Milestone[] = [
 export default function About() {
   const { theme } = useTheme();
   const [selected, setSelected] = useState<number | null>(null);
+  const scrollPositionRef = useRef(0);
   const LINE_OFFSET = 0;
 
   useEffect(() => {
     const navbar = document.querySelector('nav')?.parentElement?.parentElement?.parentElement;
+    
     if (selected !== null) {
-      document.body.style.overflow = 'hidden';
+      // Store current scroll position
+      scrollPositionRef.current = window.scrollY;
+      
+      // Lock the body at current scroll position
       document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
       document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      
+      // Force black background on html and body
+      document.documentElement.style.backgroundColor = '#000000';
+      document.body.style.backgroundColor = '#000000';
+      
       if (navbar) navbar.style.display = 'none';
     } else {
-      document.body.style.overflow = '';
+      // Unlock the body
       document.body.style.position = '';
+      document.body.style.top = '';
       document.body.style.width = '';
+      document.body.style.overflow = '';
+      
+      // Reset html and body background
+      document.documentElement.style.backgroundColor = '';
+      document.body.style.backgroundColor = '';
+      
       if (navbar) navbar.style.display = 'block';
+      
+      // Restore scroll position after a short delay to ensure styles are cleared
+      setTimeout(() => {
+        window.scrollTo(0, scrollPositionRef.current);
+      }, 0);
     }
     
     return () => {
-      document.body.style.overflow = '';
+      // Cleanup function
       document.body.style.position = '';
+      document.body.style.top = '';
       document.body.style.width = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.backgroundColor = '';
+      document.body.style.backgroundColor = '';
       if (navbar) navbar.style.display = 'block';
     };
   }, [selected]);
 
   return (
     <section
-      id="about"
+      id="about me"
       className="relative z-0 px-3 sm:px-4 md:px-6 lg:px-8"
       style={{
         backgroundColor: theme === 'dark' ? '#0C151D' : '#FFFFFF'
@@ -223,7 +252,12 @@ export default function About() {
             </div>
           </div>
 
-          {selected !== null && (
+          {/* Legend */}
+          <div className="mt-10 text-sm text-lighttextsecondary dark:text-darktextsecondary text-center max-w-5xl mx-auto leading-relaxed">
+            <p>Click the dots — it&apos;s where the juicy stuff lives.</p>
+          </div>
+
+          {selected !== null && typeof window !== 'undefined' && createPortal(
             <div 
               className="fixed inset-0 w-screen h-screen flex items-center justify-center"
               style={{
@@ -258,13 +292,13 @@ export default function About() {
                 </button>
 
                 <h3 className="text-lg font-semibold mb-1 text-black">
-                  {milestones[selected].year}
+                {milestones[selected].year}
                 </h3>
                 <h3 className="text-lg font-semibold mb-1 text-black">
-                  {milestones[selected].title}
+                {milestones[selected].title}
                 </h3>
                 <p className="text-sm mb-2 italic text-black">
-                  {milestones[selected].subtitle}
+                {milestones[selected].subtitle}
                 </p>
 
                 <div className="prose !text-black prose-headings:text-black prose-p:text-black prose-li:text-black prose-strong:text-black">
@@ -286,7 +320,8 @@ export default function About() {
                   </ReactMarkdown>
                 </div>
               </motion.div>
-            </div>
+            </div>,
+            document.body
           )}
         </div>
       </div>

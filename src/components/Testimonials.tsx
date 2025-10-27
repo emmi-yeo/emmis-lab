@@ -114,7 +114,7 @@ export default function Testimonials() {
 
   return (
     <section
-      id="testimonials"
+      id="what people say"
       className="relative z-0 bg-lightsecondary dark:bg-darksecondary px-3 sm:px-4 md:px-6 lg:px-8"
     >
       <div className="border border-lightborder dark:border-darkborder -mt-px">

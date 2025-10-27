@@ -45,7 +45,7 @@ export default function Contact() {
 
   return (
     <section
-      id="contact"
+      id="inbox me"
       className="relative z-0 bg-lightsecondary dark:bg-darksecondary px-3 sm:px-4 md:px-6 lg:px-8"
     >
       {/* Popup Message */}
@@ -210,7 +210,7 @@ export default function Contact() {
                 e.currentTarget.style.borderColor = theme === 'dark' ? '#FFFFFF' : '#000000';
               }}
             >
-              Tap for Instant Awesomeness
+              Hire Me Starter Kit [PDF]
             </button>
           </div>
         </div>
