@@ -59,11 +59,11 @@ export default function Hero() {
               transition={{ duration: 1 }}
               className="text-center sm:text-left space-y-2"
             >
-              <h1 className="text-2xl md:text-3xl font-bold text-center mb-4">
+              <h1 className="text-2xl md:text-3xl font-bold mb-4">
                 Hi, I'm Emmi Yeo
               </h1>
               <p className="text-xl font-semibold text-lighttextsecondary dark:text-darktextsecondary italic">
-                AI Engineer by day | AI Automation Engineer by night
+                ☀️ AI Engineer | 🌙 AI Automation Engineer
               </p>
 
               {/* Location + Local Time */}
