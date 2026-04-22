@@ -18,6 +18,39 @@ const serviceCategories = [
 const projects = {
   "AI & Automation Solutions": [
     {
+      id: 45,
+      title: "Month-End Report Automation for Short-Term Rental Operators",
+      description: "Automates monthly financial reporting for Airbnb/short-term rental operators.",
+      longDescription: "Built an end-to-end automation pipeline that consolidates booking, revenue, and expense data into a structured monthly report. The system processes raw data in Google Sheets, uses Gemini to generate summaries and insights, and automatically sends finalized reports via Gmail. This significantly reduces manual reporting effort and improves reporting consistency.",
+      source: "client use",
+      hashtag: "#FinanceAutomation #ShortTermRental #ReportingAI",
+      image: "",
+      techStack: ["n8n", "Google Sheets", "Gemini", "Gmail"],
+      link: ""
+    },
+    {
+      id: 46,
+      title: "OCR Receipts to Inventory & Low Stock Alert System",
+      description: "Automates receipt scanning, inventory updates, and weekly low-stock alerts.",
+      longDescription: "Developed an intelligent workflow that extracts purchase data from receipt images using OCR, updates inventory records in Google Sheets, and sends automated low-stock alerts via Telegram on a weekly basis. The system ensures real-time inventory tracking and reduces stock-out risks without manual data entry.",
+      source: "client use",
+      hashtag: "#OCRAutomation #InventoryManagement #SmartOps",
+      image: "",
+      techStack: ["Telegram", "Google Sheets", "Gemini", "Google Apps Script"],
+      link: ""
+    },
+    {
+      id: 47,
+      title: "Accounting Categorisation & P&L Generation Automation",
+      description: "End-to-end accounting automation for transaction categorisation and P&L reporting.",
+      longDescription: "Designed a full accounting automation workflow that ingests bank statements, categorizes transactions using rule-based logic and Gemini AI, and generates structured Profit & Loss reports in Google Sheets. Integrated email workflows for accountant review and approval, enabling a semi-automated finance pipeline with human-in-the-loop validation.",
+      source: "client use",
+      hashtag: "#AccountingAutomation #PnL #FinanceAI",
+      image: "",
+      techStack: ["n8n", "Google Sheets", "Gmail", "Gemini"],
+      link: ""
+    },
+    {
       id: 1,
       title: "AI Blogpost Generation",
       description: "Automated content generation for marketing blogs using Gemini and Google Docs via n8n workflow.",

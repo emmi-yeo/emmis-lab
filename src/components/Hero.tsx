@@ -2,12 +2,29 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
 export default function Hero() {
   const { theme } = useTheme();
   const [isHovering, setIsHovering] = useState(false);
+  const [localTime, setLocalTime] = useState("");
+
+  useEffect(() => {
+    const tick = () =>
+      setLocalTime(
+        new Date().toLocaleTimeString("en-MY", {
+          timeZone: "Asia/Kuala_Lumpur",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      );
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section
       id="hero"
@@ -46,13 +63,20 @@ export default function Hero() {
                 Hi, I'm Emmi Yeo
               </h1>
               <p className="text-xl font-semibold text-lighttextsecondary dark:text-darktextsecondary italic">
-                Data Science & AI Enthusiast
+                AI Engineer by day | AI Automation Engineer by night
               </p>
 
-              {/* Location */}
-              <div className="flex justify-center sm:justify-start items-center gap-2">
-                <FaMapMarkerAlt className="text-lighttextprimary dark:text-darktextprimary" />
-                <span className="text-xl md:text-xl text-lighttextsecondary dark:text-darktextsecondary">Kuala Lumpur, Malaysia</span>
+              {/* Location + Local Time */}
+              <div className="flex flex-col gap-1">
+                <div className="flex justify-center sm:justify-start items-center gap-2">
+                  <FaMapMarkerAlt className="text-lighttextprimary dark:text-darktextprimary" />
+                  <span className="text-xl md:text-xl text-lighttextsecondary dark:text-darktextsecondary">Kuala Lumpur, Malaysia</span>
+                </div>
+                {localTime && (
+                  <div className="flex justify-center sm:justify-start items-center gap-2">
+                    <span className="text-sm text-lighttextsecondary dark:text-darktextsecondary opacity-70">🕐 Local time: {localTime} (UTC+8)</span>
+                  </div>
+                )}
               </div>
 
               {/* CTA Button */}

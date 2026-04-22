@@ -97,13 +97,13 @@ const milestones: Milestone[] = [
     `,
   },
   {
-    year: "Upcoming",
-    title: "That AI Girl Who Gets Stuff Done",
-    subtitle: "Always learning. Always building.",
+    year: "2026",
+    title: "V-Work Sdn Bhd",
+    subtitle: "AI Engineer",
     detail: `
-➤ If it involves data, automation, or generative AI — I’m in.
-➤ Vibe coding my way through life — I describe it, the AI builds it, I debug it, we cry together.
-➤ Always learning. Always iterating. Always caffeinated. ☕💻
+➤ Built AI-powered vendor search systems that speak multiple languages, tolerate typos, and still find what you’re looking for
+➤ Deployed AI services on Azure — scalable, auditable, and mostly behaving in production
+➤ Debugged, tested, and negotiated with Claude AI until it finally did what I meant
     `,
   },
 ];

@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { FaLinkedinIn, FaGithub, FaYoutube } from "react-icons/fa";
 import { useTheme } from "next-themes";
 
@@ -14,6 +14,29 @@ export default function Contact() {
 
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Increment visitor count on page load, then store result in sessionStorage
+    // so refreshes within the same session don't double-count
+    const alreadyCounted = sessionStorage.getItem("visit_counted");
+
+    const fetchAndMaybeIncrement = async () => {
+      try {
+        const method = alreadyCounted ? "GET" : "POST";
+        const res = await fetch("/api/visitors", { method });
+        if (res.ok) {
+          const data = await res.json();
+          setVisitorCount(data.count);
+          if (!alreadyCounted) sessionStorage.setItem("visit_counted", "1");
+        }
+      } catch {
+        // silently fail — visitor count is non-critical
+      }
+    };
+
+    fetchAndMaybeIncrement();
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -187,31 +210,41 @@ export default function Contact() {
               ))}
             </div>
 
-            <button
-              onClick={() =>
-                window.open(resumeUrl, "_blank", "noopener,noreferrer")
-              }
-              className="mt-6 inline-flex items-center justify-center px-6 py-3 rounded-full active:scale-95 transition-all duration-200"
-              style={{
-                backgroundColor: theme === 'dark' ? '#FFFFFF' : '#000000',
-                color: theme === 'dark' ? '#000000' : '#FFFFFF',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: theme === 'dark' ? '#FFFFFF' : '#000000'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#FBD144';
-                e.currentTarget.style.color = '#000000';
-                e.currentTarget.style.borderColor = '#FBD144';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = theme === 'dark' ? '#FFFFFF' : '#000000';
-                e.currentTarget.style.color = theme === 'dark' ? '#000000' : '#FFFFFF';
-                e.currentTarget.style.borderColor = theme === 'dark' ? '#FFFFFF' : '#000000';
-              }}
-            >
-              Hire Me Starter Kit [PDF]
-            </button>
+            {/* Visitor count */}
+            {visitorCount !== null && visitorCount > 0 && (
+              <p className="mt-6 text-sm text-lighttextsecondary dark:text-darktextsecondary opacity-60">
+                👁 {visitorCount.toLocaleString()} {visitorCount === 1 ? "person has" : "people have"} visited this site
+              </p>
+            )}
+
+            {/* Hire Me Starter Kit — hidden from UI, not removed */}
+            <div className="hidden">
+              <button
+                onClick={() =>
+                  window.open(resumeUrl, "_blank", "noopener,noreferrer")
+                }
+                className="mt-6 inline-flex items-center justify-center px-6 py-3 rounded-full active:scale-95 transition-all duration-200"
+                style={{
+                  backgroundColor: theme === 'dark' ? '#FFFFFF' : '#000000',
+                  color: theme === 'dark' ? '#000000' : '#FFFFFF',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderColor: theme === 'dark' ? '#FFFFFF' : '#000000'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FBD144';
+                  e.currentTarget.style.color = '#000000';
+                  e.currentTarget.style.borderColor = '#FBD144';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#FFFFFF' : '#000000';
+                  e.currentTarget.style.color = theme === 'dark' ? '#000000' : '#FFFFFF';
+                  e.currentTarget.style.borderColor = theme === 'dark' ? '#FFFFFF' : '#000000';
+                }}
+              >
+                Hire Me Starter Kit [PDF]
+              </button>
+            </div>
           </div>
         </div>
       </div>
