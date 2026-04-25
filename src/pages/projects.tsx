@@ -18,6 +18,39 @@ const serviceCategories = [
 const projects = {
   "AI & Automation Solutions": [
     {
+      id: 48,
+      title: "AI Chatbot for Structured Thinking (MECE / SCQA / Pyramid)",
+      description: "Enterprise AI assistant that structures thinking using MECE, SCQA, and Pyramid principles.",
+      longDescription: "Built an internal AI chatbot designed to enhance structured thinking in business and consulting workflows. Using RAG and OpenAI on Azure, the system guides users to frame problems using MECE, develop narratives using SCQA, and present ideas using the Pyramid Principle. It acts as a thinking partner for proposal writing, problem solving, and executive communication, improving clarity and decision-making quality.",
+      source: "company use",
+      hashtag: "#AIChatbot #StructuredThinking #RAG #ConsultingAI",
+      image: "",
+      techStack: ["Azure", "OpenAI", "RAG", "Python"],
+      link: ""
+    },
+    {
+      id: 49,
+      title: "AI Vendor Registration System",
+      description: "AI-assisted vendor onboarding system that automates data capture and validation.",
+      longDescription: "Developed a Streamlit-based application that streamlines vendor registration by extracting, validating, and structuring vendor information automatically. The system reduces manual form filling, improves data accuracy, and accelerates onboarding by leveraging AI-driven parsing and validation workflows.",
+      source: "company use",
+      hashtag: "#VendorManagement #AIAutomation #Onboarding",
+      image: "",
+      techStack: ["Python", "Streamlit"],
+      link: ""
+    },
+    {
+      id: 50,
+      title: "AI-Powered Vendor & Contract Search",
+      description: "Natural language search system for enterprise procurement data.",
+      longDescription: "Built an AI-powered search platform that allows users to query vendor and contract data using natural language. The system integrates Python backend services with a Next.js + Tailwind frontend, deployed on Azure with OpenAI. It supports multilingual queries, filtering, and structured outputs, enabling faster data retrieval and improved decision-making in procurement workflows.",
+      source: "company use",
+      hashtag: "#AISearch #EnterpriseAI #ProcurementAI",
+      image: "",
+      techStack: ["Python", "Next.js", "Tailwind", "Azure", "OpenAI"],
+      link: ""
+    },
+    {
       id: 45,
       title: "Month-End Report Automation for Short-Term Rental Operators",
       description: "Automates monthly financial reporting for Airbnb/short-term rental operators.",
